@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 # E-Learning University Web App
 
 A simple Flask-based university e-learning starter app that you can run locally or deploy on Render.
@@ -66,3 +67,6 @@ elearning_university_app/
 - The public web app represents the public tier.
 - The Render PostgreSQL database represents the private data tier.
 - Render load balances traffic when the web service is scaled to multiple instances.
+=======
+# cloud-assignment
+>>>>>>> 13d8ef7531e0740792cc996fd69de6b96a68e8c3
