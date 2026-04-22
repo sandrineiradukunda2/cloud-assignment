@@ -1,0 +1,24 @@
+{% extends "base.html" %}
+{% block title %}Home | E-Learning University{% endblock %}
+{% block content %}
+<section class="hero">
+    <h1>Welcome to the University E-Learning Platform</h1>
+    <p>Access courses, learn online, and manage your academic journey from one place.</p>
+    {% if not user %}
+        <a class="btn btn-light" href="{{ url_for('register') }}">Create Account</a>
+        <a class="btn btn-secondary" href="{{ url_for('login') }}">Login</a>
+    {% endif %}
+</section>
+
+<h2>Available Courses</h2>
+<div class="cards">
+    {% for course in courses %}
+        <div class="card">
+            <h3>{{ course.code }} - {{ course.title }}</h3>
+            <p>{{ course.description }}</p>
+            <p class="meta">Instructor: {{ course.instructor }}</p>
+            <a class="btn" href="{{ url_for('course_detail', course_id=course.id) }}">View Course</a>
+        </div>
+    {% endfor %}
+</div>
+{% endblock %}

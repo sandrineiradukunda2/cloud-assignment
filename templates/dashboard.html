@@ -1,0 +1,28 @@
+{% extends "base.html" %}
+{% block title %}Dashboard | E-Learning University{% endblock %}
+{% block content %}
+<section class="hero">
+    <h1>Hello, {{ user.full_name }}</h1>
+    <p>Role: {{ user.role|capitalize }} | Enrolled Courses: {{ enrollment_count }}</p>
+</section>
+
+<h2>Course Dashboard</h2>
+<div class="cards">
+    {% for course in courses %}
+        <div class="card">
+            <h3>{{ course.code }} - {{ course.title }}</h3>
+            <p>{{ course.description }}</p>
+            <p class="meta">Instructor: {{ course.instructor }}</p>
+
+            {% if course.id in enrolled_course_ids %}
+                <p><strong>Status:</strong> Enrolled</p>
+                <a class="btn btn-secondary" href="{{ url_for('course_detail', course_id=course.id) }}">Open Course</a>
+            {% else %}
+                <form method="POST" action="{{ url_for('enroll', course_id=course.id) }}">
+                    <button type="submit">Enroll Now</button>
+                </form>
+            {% endif %}
+        </div>
+    {% endfor %}
+</div>
+{% endblock %}

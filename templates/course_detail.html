@@ -1,0 +1,24 @@
+{% extends "base.html" %}
+{% block title %}Course Detail | E-Learning University{% endblock %}
+{% block content %}
+<div class="card">
+    <h2>{{ course.code }} - {{ course.title }}</h2>
+    <p>{{ course.description }}</p>
+    <p class="meta">Instructor: {{ course.instructor }}</p>
+    <hr>
+    <p>This is a sample course page. You can later add modules, lessons, assignments, video links, and quizzes here.</p>
+
+    {% if user %}
+        {% if is_enrolled %}
+            <p><strong>You are enrolled in this course.</strong></p>
+            <a class="btn btn-secondary" href="{{ url_for('dashboard') }}">Back to Dashboard</a>
+        {% else %}
+            <form method="POST" action="{{ url_for('enroll', course_id=course.id) }}">
+                <button type="submit">Enroll in this Course</button>
+            </form>
+        {% endif %}
+    {% else %}
+        <a class="btn" href="{{ url_for('login') }}">Login to Enroll</a>
+    {% endif %}
+</div>
+{% endblock %}
